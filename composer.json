@@ -19,10 +19,5 @@
     ],
     "require": {
         "php": ">=5"
-    },
-    "autoload": {
-        "psr-0": {
-            "Monolog": "src"
-        }
     }
 }
