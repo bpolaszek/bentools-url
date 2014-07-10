@@ -1,0 +1,28 @@
+{
+    "name": "bentools/url",
+    "type": "library",
+    "description": "Url object representation",
+    "keywords": ["url", "uri", "object"],
+    "homepage": "https://github.com/bpolaszek/bentools-url",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Beno!t POLASZEK",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/bpolaszek/bentools-url"
+        }
+    ],
+    "require": {
+        "php": ">=5"
+    },
+    "autoload": {
+        "psr-0": {
+            "Monolog": "src"
+        }
+    }
+}

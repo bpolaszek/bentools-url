@@ -88,7 +88,7 @@ Class Url {
      */
     protected function populateParams() {
 
-        $params =   [];
+        $params =   array();
 
         if (!empty($this->query))
             parse_str($this->query, $params);
