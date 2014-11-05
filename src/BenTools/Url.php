@@ -3,7 +3,7 @@
 /**
  * MIT License (MIT)
  *
- * Copyright (c) 2013 Beno!t POLASZEK
+ * Copyright (c) 2014 Beno!t POLASZEK
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -91,7 +91,7 @@ Class Url {
         $params =   array();
 
         if (!empty($this->query))
-            parse_str($this->query, $params);
+            $params     =   static::ParseQuery($this->query);
 
         $this->params   =   (array) $params;
         return $this;
@@ -243,6 +243,16 @@ Class Url {
     }
 
     /**
+     * @param string $query
+     * @return $this - Provides Fluent Interface
+     */
+    public function setQuery($query) {
+        $this->query = $query;
+        $this->populateParams();
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getQuery() {
@@ -272,6 +282,78 @@ Class Url {
     }
 
     /**
+     * @param string $key
+     * @return $this - Provides Fluent Interface
+     */
+    public function setKey($key) {
+        $this->key = $key;
+        return $this;
+    }
+
+    /**
+     * @param string $scheme
+     * @return $this - Provides Fluent Interface
+     */
+    public function setScheme($scheme) {
+        $this->scheme = $scheme;
+        return $this;
+    }
+
+    /**
+     * @param string $user
+     * @return $this - Provides Fluent Interface
+     */
+    public function setUser($user) {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @param string $pass
+     * @return $this - Provides Fluent Interface
+     */
+    public function setPass($pass) {
+        $this->pass = $pass;
+        return $this;
+    }
+
+    /**
+     * @param string $host
+     * @return $this - Provides Fluent Interface
+     */
+    public function setHost($host) {
+        $this->host = $host;
+        return $this;
+    }
+
+    /**
+     * @param int $port
+     * @return $this - Provides Fluent Interface
+     */
+    public function setPort($port) {
+        $this->port = $port;
+        return $this;
+    }
+
+    /**
+     * @param string $path
+     * @return $this - Provides Fluent Interface
+     */
+    public function setPath($path) {
+        $this->path = $path;
+        return $this;
+    }
+
+    /**
+     * @param string $fragment
+     * @return $this - Provides Fluent Interface
+     */
+    public function setFragment($fragment) {
+        $this->fragment = $fragment;
+        return $this;
+    }
+
+    /**
      * String context
      * @return string
      */
@@ -296,6 +378,15 @@ Class Url {
      */
     public function __get($key) {
         return $this->{$key};
+    }
+
+    /**
+     * @param $str
+     * @return array
+     */
+    public static function ParseQuery($str) {
+        parse_str($str, $data);
+        return $data;
     }
 
 }
