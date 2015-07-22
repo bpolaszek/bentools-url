@@ -130,6 +130,13 @@ Class Url {
      */
     public function appendToPath($path) {
 
+        if (strpos($path, '?') !== false) {
+            $split          =   explode('?', $path);
+            $path           =   $split[0];
+            $queryString    =   $split[1];
+            $this->params   =   array_replace((array) $this->params, (array) static::ParseQuery($queryString));
+        }
+
         $path   =   ltrim($path, '/');
 
         if (strpos(strrev($this->path), '/') !== 0)
