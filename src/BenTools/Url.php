@@ -28,7 +28,7 @@
 
 namespace   BenTools;
 
-Class Url {
+class Url implements \JsonSerializable {
 
     protected   $scheme;
     protected   $user;
@@ -68,6 +68,7 @@ Class Url {
 
     /**
      * Constructor alias - useful for chaining
+     * @return static
      */
     public static function NewInstance() {
         $CurrentClass	=	new \ReflectionClass(get_called_class());
@@ -129,13 +130,6 @@ Class Url {
      * @return $this
      */
     public function appendToPath($path) {
-
-        if (strpos($path, '?') !== false) {
-            $split          =   explode('?', $path);
-            $path           =   $split[0];
-            $queryString    =   $split[1];
-            $this->params   =   array_replace((array) $this->params, (array) static::ParseQuery($queryString));
-        }
 
         $path   =   ltrim($path, '/');
 
@@ -366,6 +360,17 @@ Class Url {
      */
     public function __toString() {
         return $this->rebuild();
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize() {
+        return (string) $this;
     }
 
     /**
