@@ -116,6 +116,19 @@ class Url implements \JsonSerializable {
     }
 
     /**
+     * @param array $params
+     * @param bool $reset
+     * @return $this
+     */
+    public function setParams(array $params, $reset = true) {
+        if ($reset)
+            $this->params = $params;
+        else
+            $this->params = array_replace($this->params, $params);
+        return $this;
+    }
+
+    /**
      * Gets a parameter in the query string
      * @param $key
      * @return null
