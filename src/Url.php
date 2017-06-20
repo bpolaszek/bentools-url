@@ -15,8 +15,7 @@ class Url extends Uri
         if (null === $uri) {
             if ('cli' === php_sapi_name()) {
                 $uri = '';
-            }
-            else {
+            } else {
                 $uri = $_SERVER['REQUEST_URI'];
             }
         }
@@ -108,4 +107,31 @@ class Url extends Uri
         return array_key_exists($key, $params) ? $params[$key] : null;
     }
 
+    /**
+     * @param $path
+     * @return Url
+     */
+    public function withAppendedPath($path)
+    {
+        if (0 === mb_strlen($this->getPath())) {
+            return $this->withPath($path);
+        }
+        $currentPath = rtrim($this->getPath(), '/');
+        $newPath = sprintf('%s/%s', $currentPath, ltrim($path, '/'));
+        return $this->withPath($newPath);
+    }
+
+    /**
+     * @param $path
+     * @return Url
+     */
+    public function withPrependedPath($path)
+    {
+        if (0 === mb_strlen($this->getPath())) {
+            return $this->withPath($path);
+        }
+        $currentPath = ltrim($this->getPath(), '/');
+        $newPath = sprintf('%s/%s', rtrim($path, '/'), $currentPath);
+        return $this->withPath($newPath);
+    }
 }
