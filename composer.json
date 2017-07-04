@@ -21,7 +21,10 @@
         "guzzlehttp/psr7": "^1.4"
     },
     "require-dev": {
-        "symfony/var-dumper": "^3.3"
+        "symfony/var-dumper": "^3.3",
+        "bentools/cartesian-product": "^1.1",
+        "bentools/string-combinations": "^1.0",
+        "phpunit/phpunit": "@stable"
     },
     "autoload": {
         "psr-4": {"BenTools\\Url\\": "src/"}
